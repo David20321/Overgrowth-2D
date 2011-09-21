@@ -8,6 +8,7 @@ package
 		
 		public const _max_speed:Number = 100;
 		public const _gravity:Number = 400;
+		public const _wall_gravity:Number = 300;
 		public const _drag:Number = _max_speed * 8;
 		public const _jump_vel:Number = 150.0;
 		public const _jetpack_fuel_max:Number = 100.0;
@@ -49,7 +50,7 @@ package
 			if(isTouching(FLOOR))
 			{
 				//Jump controls
-				if(FlxG.keys.SPACE)
+				if(FlxG.keys.UP)
 				{
 					jetpack_fuel = _jetpack_fuel_max;
 					velocity.y = -_jump_vel;
@@ -67,11 +68,18 @@ package
 			else
 				play("flail");
 			if(!isTouching(FLOOR)){
-				if(FlxG.keys.SPACE && jetpack_fuel > 0.0)
+				if((FlxG.keys.LEFT && isTouching(LEFT)) || 
+				   (FlxG.keys.RIGHT && isTouching(RIGHT)))
+				{
+					acceleration.y = _wall_gravity;
+				} else {
+					acceleration.y = _gravity;
+				}
+				if(FlxG.keys.UP && jetpack_fuel > 0.0)
 				{
 					velocity.y -= jetpack_fuel * _jetpack_fuel_vel_convert * FlxG.elapsed;
 				}
-				if(FlxG.keys.justReleased("SPACE") && jetpack_fuel > 0.0)
+				if(FlxG.keys.justReleased("UP") && jetpack_fuel > 0.0)
 				{
 					velocity.y += jetpack_fuel * _neg_jetpack_fuel_vel_convert;
 					jetpack_fuel = 0.0;
