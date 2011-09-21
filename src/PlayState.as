@@ -25,8 +25,6 @@ package
 			decoration.moves = false;
 			decoration.solid = false;
 			add(decoration);
-			add(new FlxText(32,36,96,"collision").setFormat(null,16,0x778ea1,"center"));
-			add(new FlxText(32,60,96,"DEMO").setFormat(null,24,0x778ea1,"center"));
 			
 			var path:FlxPath;
 			var sprite:FlxSprite;
@@ -35,21 +33,6 @@ package
 			//Then add the player, its own class with its own logic
 			_player = new Player(32,176);
 			add(_player);
-			
-			//Then create the crates that are sprinkled around the level
-			var crates:Array = [new FlxPoint(64,208),
-								new FlxPoint(108,176),
-								new FlxPoint(140,176),
-								new FlxPoint(192,208),
-								new FlxPoint(272,48)];
-			for(var i:uint = 0; i < crates.length; i++)
-			{
-				sprite = new FlxSprite((crates[i] as FlxPoint).x,(crates[i] as FlxPoint).y,ImgCrate);
-				sprite.height = sprite.height-1;
-				sprite.acceleration.y = 400;
-				sprite.drag.x = 200;
-				add(sprite);
-			}
 			
 			//Basic level structure
 			_level = new FlxTilemap();
