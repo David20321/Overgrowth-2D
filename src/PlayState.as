@@ -7,12 +7,6 @@ package
 	{
 		[Embed(source="data/map.png")] private var ImgMap:Class;
 		[Embed(source="data/tiles.png")] private var ImgTiles:Class;
-		[Embed(source="data/bg.png")] private var ImgBG:Class;
-		[Embed(source="data/gibs.png")] private var ImgGibs:Class;
-		
-		[Embed(source="data/pusher.png")] private var ImgPusher:Class;
-		[Embed(source="data/elevator.png")] private var ImgElevator:Class;
-		[Embed(source="data/crate.png")] private var ImgCrate:Class;
 		
 		protected var _level:FlxTilemap;
 		protected var _player:Player;
@@ -20,11 +14,7 @@ package
 		override public function create():void
 		{			
 			//Background
-			FlxG.bgColor = 0xffacbcd7;
-			var decoration:FlxSprite = new FlxSprite(256,159,ImgBG);
-			decoration.moves = false;
-			decoration.solid = false;
-			add(decoration);
+			FlxG.bgColor = 0xffffffff;
 			
 			var path:FlxPath;
 			var sprite:FlxSprite;
