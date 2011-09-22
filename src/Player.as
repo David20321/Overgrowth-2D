@@ -1,6 +1,7 @@
 package
 {
 	import org.flixel.*;
+	import flash.display.Graphics;
 	
 	public class Player extends FlxSprite
 	{
@@ -41,6 +42,25 @@ package
 			addAnimation("walk", [3,4], 12, true);
 			addAnimation("fall", [7], 6, true);
 			addAnimation("idle", [0,0,5,5], 1, true);
+		}
+		
+		override public function draw():void
+		{
+			super.draw();
+			
+			var p:FlxPoint = new FlxPoint(x+4,y+8);
+			var gfx:Graphics = FlxG.flashGfx;
+			gfx.clear();
+			gfx.moveTo(p.x,p.y);
+			var boundingBoxColor:uint = FlxG.RED;
+			gfx.lineStyle(1,boundingBoxColor,0.5);
+			gfx.lineTo(p.x+velocity.x, p.y+velocity.y);
+			FlxG.camera.buffer.draw(FlxG.flashGfxSprite);
+		}
+		
+		override public function drawDebug(Camera:FlxCamera=null):void
+		{
+			super.drawDebug(Camera);
 		}
 		
 		override public function update():void

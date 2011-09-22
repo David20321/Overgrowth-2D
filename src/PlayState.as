@@ -29,6 +29,8 @@ package
 			_level.loadMap(FlxTilemap.imageToCSV(ImgMap,false,2),ImgTiles,0,0,FlxTilemap.ALT);
 			_level.follow();
 			add(_level);
+			
+			//FlxG.visualDebug = true;
 		}
 		
 		override public function destroy():void
