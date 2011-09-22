@@ -14,6 +14,7 @@ package
 		public const _gravity:Number = 400;
 		public const _wall_gravity:Number = 300;
 		public const _drag:Number = _max_speed * 8;
+		public const _drag_air:Number = _max_speed * 4;
 		public const _jump_vel:Number = 150.0;
 		public const _jetpack_fuel_max:Number = 100.0;
 		public const _jetpack_fuel_decay:Number = 500.0;
@@ -63,6 +64,7 @@ package
 			
 			if(isTouching(FLOOR))
 			{
+				drag.x = _drag;
 				if(!on_floor){
 					FlxG.play(land_sound);
 				}
@@ -97,6 +99,7 @@ package
 			else
 				play("fall");
 			if(!isTouching(FLOOR)){
+				drag.x = _drag_air;
 				on_floor = false;
 				if((FlxG.keys.LEFT && isTouching(LEFT)) || 
 				   (FlxG.keys.RIGHT && isTouching(RIGHT)))
